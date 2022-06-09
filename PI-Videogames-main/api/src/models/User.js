@@ -4,27 +4,22 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "videogame",
+    "user",
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      image: DataTypes.TEXT,
-      rating: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
-      rating_count: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
-      launch: {
-        type: DataTypes.DATE,
-      },
-      description: {
-        type: DataTypes.TEXT,
+      username: {
+        type: DataTypes.STRING,
         allowNull: false,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
       },
     },
     {
