@@ -12,8 +12,8 @@ module.exports = (sequelize) => {
       },
       image: DataTypes.TEXT,
       rating: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+        type: DataTypes.FLOAT,
+        defaultValue: 0.0,
       },
       rating_count: {
         type: DataTypes.INTEGER,

@@ -6,6 +6,10 @@ module.exports = (sequelize) => {
   sequelize.define(
     "genre",
     {
+      api: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,

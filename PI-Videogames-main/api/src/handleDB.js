@@ -1,5 +1,5 @@
-const { Videogame, Plataform, Genre } = require("./db");
-const { Op } = require("sequelize");
+const { Videogame, Plataform, Genre, User } = require("./db");
+const { Op, HasOne } = require("sequelize");
 const fetch = require("node-fetch");
 
 //por si no funciona otra vez
@@ -24,6 +24,7 @@ function searchDB(name) {
         let formating = r.map((x) => {
           let properties = x.dataValues;
           properties.image = [properties.image];
+          properties.id = "R" + properties.id;
           return properties;
         });
         resolve(formating);
@@ -45,6 +46,7 @@ function detailsDB(id) {
       .then((r) => {
         if (r.length > 0) {
           r[0].dataValues.image = [r[0].dataValues.image];
+          r[0].dataValues.id = "R" + r[0].dataValues.id;
           resolve(r[0].dataValues);
         } else resolve(r);
       })
@@ -78,17 +80,22 @@ function createVideogame(
       });
       let plataforms = await Plataform.findAll();
       let genres = await Genre.findAll();
+      // console.log(genres);
 
       //filtramos la lista para que solo queden las que se  van a asociar
       let plataformsSelected = plataforms.filter((x) =>
-        plataformsID.includes(x.dataValues.id)
+        plataformsID.includes(x.dataValues.api)
       );
       let genresSelected = genres.filter((x) =>
-        genresID.includes(x.dataValues.id)
+        genresID.includes(x.dataValues.api)
       );
       //realizamos las respectivas relaciones
       await videogame.addPlataforms(plataformsSelected);
       await videogame.addGenres(genresSelected);
+      let confimation = await Videogame.findAll({
+        include: [Plataform, Genre],
+      });
+      resolve(confimation);
     } catch (error) {
       console.log(error);
     }
@@ -125,7 +132,6 @@ function updatePlataforms() {
             else if (match.includes("ios"))
               url = "https://www.apple.com/co/app-store/";
 
-            console.log(url);
             Plataform.create({
               api: platform.id,
               name: platform.name,
@@ -133,8 +139,10 @@ function updatePlataforms() {
             }).catch((e) => console.log({ err: e }));
           });
         }
-        resolve("hola");
-      });
+
+        resolve({ msg: "the plataforms has updated" });
+      })
+      .catch((e) => reject({ err: e }));
   });
 
   return p;
@@ -148,13 +156,14 @@ function updateGenres() {
         if (x.results) {
           x.results.forEach((genre) => {
             Genre.create({
+              api: genre.id,
               name: genre.name,
               games_count: genre.games_count,
               image: genre.image_background,
             }).catch((e) => console.log({ err: e }));
           });
         }
-        resolve({ msg: "se ha actualizado la los generos con exito" });
+        resolve({ msg: "the genres has updated" });
       })
       .catch((e) => reject({ err: e }));
   });
@@ -162,4 +171,113 @@ function updateGenres() {
   return p;
 }
 
-updateGenres().then((r) => console.log(r));
+function getGenres() {
+  let p = new Promise((resolve, reject) => {
+    Genre.findAll()
+      .then((r) => {
+        let results = r.map((x) => {
+          return x.dataValues;
+        });
+        resolve(results);
+      })
+      .catch((e) => reject(e));
+  });
+  return p;
+}
+function getPlataforms() {
+  let p = new Promise((resolve, reject) => {
+    Plataform.findAll()
+      .then((r) => {
+        let results = r.map((x) => {
+          return x.dataValues;
+        });
+        resolve(results);
+      })
+      .catch((e) => reject(e));
+  });
+  return p;
+}
+
+function getUser(id) {
+  let p = new Promise((resolve, reject) => {
+    User.findByPk(parseInt(id))
+      .then((r) => {
+        if (!r) {
+          reject({ err: "don´t exist the id in database" });
+        }
+        resolve(r);
+      })
+      .catch((e) => reject({ err: e.parent || e }));
+  });
+
+  return p;
+}
+
+function addUser(name, username, password, email) {
+  let p = new Promise((resolve, reject) => {
+    User.create({
+      name,
+      username,
+      password,
+      email,
+    })
+      .then((r) => resolve(r))
+      .catch((e) => reject(e.parent || e));
+  });
+
+  return p;
+}
+
+function qualify(userId, videogameId, score) {
+  let p = new Promise(async (resolve, reject) => {
+    try {
+      if (!score) return reject({ err: "don´t exists score for qualify" });
+
+      let user = await getUser(userId);
+      let videogame = await Videogame.findByPk(parseInt(videogameId));
+
+      if (!user || !videogame)
+        return reject({ err: "don´t exists the user or the videogame" });
+
+      let count = videogame.dataValues.rating_count;
+      let scoreOld = videogame.dataValues.rating;
+      if (await videogame.hasUser(user)) {
+        reject({ err: "you had already qualify the videogame" });
+      }
+      videogame.addUser(user);
+      videogame
+        .update({
+          rating: (scoreOld * count + score) / (count + 1),
+          rating_count: count + 1,
+        })
+        .then((r) => resolve({ msg: "you have qualifily the videogame" }));
+    } catch (error) {
+      reject({ err: error });
+    }
+  });
+
+  return p;
+}
+
+// updateGenres();
+// updatePlataforms();
+// addUser("antonio", "ant", "1234", "correo@gmail.com");
+// createVideogame(
+//   "mario",
+//   "no existe recurso",
+//   Date.now(),
+//   "aqui va la descripcion",
+//   [],
+//   []
+// );
+
+module.exports = {
+  searchDB,
+  detailsDB,
+  createVideogame,
+  getGenres,
+  getPlataforms,
+  addUser,
+  getUser,
+  qualify,
+};

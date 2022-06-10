@@ -21,8 +21,8 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  console.log("se ha conectado a la base de datos ");
+conn.sync({ alter: true }).then(() => {
+  console.log("the server has connected to data base ");
   server.listen(3001, () => {
     console.log("listening at http://localhost:3001"); // eslint-disable-line no-console
   });
