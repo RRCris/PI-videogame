@@ -11,7 +11,7 @@ function searchDB(name) {
   let p = new Promise((resolve, reject) => {
     //hacemos la busqueda
     Videogame.findAll({
-      attributes: ["name", "image", "rating"],
+      attributes: ["id", "name", "image", "rating"],
       where: {
         name: {
           [Op.like]: name.toLowerCase() + "%",
@@ -70,12 +70,13 @@ function createVideogame(
     try {
       //nos aseguramos que las array tengan numeros
       plataformsID = plataformsID.map((x) => parseInt(x));
+      genresID = genresID.map((x) => parseInt(x));
 
       //creamos videojuego y requerimos la lista de plaformas y genereos disponibles
       let videogame = await Videogame.create({
         name,
         image,
-        launch,
+        launch: Date.parse(launch),
         description,
       });
       let plataforms = await Plataform.findAll();
@@ -93,6 +94,9 @@ function createVideogame(
       await videogame.addPlataforms(plataformsSelected);
       await videogame.addGenres(genresSelected);
       let confimation = await Videogame.findAll({
+        where: {
+          id: videogame.dataValues.id,
+        },
         include: [Plataform, Genre],
       });
       resolve(confimation);
@@ -227,6 +231,25 @@ function addUser(name, username, password, email) {
 
   return p;
 }
+function loginUser(username, password) {
+  let p = new Promise((resolve, reject) => {
+    User.findAll({
+      where: {
+        username: username,
+        password: password,
+      },
+    })
+      .then((r) => {
+        if (r.length < 1) {
+          reject({ err: "the password or username are incorrect" });
+        }
+        resolve(r[0]);
+      })
+      .catch((e) => reject({ err: e }));
+  });
+
+  return p;
+}
 
 function qualify(userId, videogameId, score) {
   let p = new Promise(async (resolve, reject) => {
@@ -239,15 +262,20 @@ function qualify(userId, videogameId, score) {
       if (!user || !videogame)
         return reject({ err: "don´t exists the user or the videogame" });
 
-      let count = videogame.dataValues.rating_count;
-      let scoreOld = videogame.dataValues.rating;
       if (await videogame.hasUser(user)) {
         reject({ err: "you had already qualify the videogame" });
       }
       videogame.addUser(user);
+
+      let count = parseInt(videogame.dataValues.rating_count);
+      let scoreOld = parseInt(videogame.dataValues.rating);
+
+      let x = scoreOld * count;
+      x += parseInt(score);
+      x /= count + 1;
       videogame
         .update({
-          rating: (scoreOld * count + score) / (count + 1),
+          rating: x,
           rating_count: count + 1,
         })
         .then((r) => resolve({ msg: "you have qualifily the videogame" }));
@@ -280,4 +308,5 @@ module.exports = {
   addUser,
   getUser,
   qualify,
+  loginUser,
 };
