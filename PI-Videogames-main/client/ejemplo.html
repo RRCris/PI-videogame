@@ -34,19 +34,35 @@
                 <label>Nombre</label>
             </div>
                 
-            <div class="groupInput">
-                <input type="text" placeholder="Nombre">
-                <label>Nombre</label>
+            <div class="groupInputSearch">
+                <input type="text" placeholder="Busqueda">
+                <label>Busqueda</label>
+                <img>
             </div>
+            <br>
             <div class="groupInput">
                 <input type="text" placeholder="Nombre" disabled>
                 <label>Nombre</label>
             </div>
+            <div class="groupInputValid groupInputValid_checked">
+                <input type="text" placeholder="Email" required>
+                <label class="name">Email</label>
+                <img class="icon" alt="icon">
+                <label class="message">Esto es un mensaje</label>
+            </div>
+            <div class="groupTextarea">
+                <textarea cols="27"
+                    rows="5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                                        Quidem eveniet sapiente quod. Dolorum quod eaque adipisci 
+                                        voluptas odio illum natus quidem dolores, architecto quos delectus, odit ad! Cum, tempora. Consectetur.</textarea>
+                <label class="name">Descripcion</label>
+            </div>
         
     </div>
     <div class="group">
-        <button>Esto es un Boton</button>
-        <button class="buttonOptinal">Esto es un Opcional</button>
+        <button> es un Boton</button>
+        <button class="buttonOptinal"> es una Opcion</button>
+        <button class="buttonNav"> es un Nav</button>
     </div>
     <div class="group">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi in nobis praesentium, corrupti aut rerum
@@ -115,16 +131,59 @@
         </div>
     </div>
     <div class="group">
-        <div class="groupInputValid groupInputValid_warn">
-            <input type="text" placeholder="Email" required>
-            <label class="name">Email</label>
-            <img class="icon"  alt="icon">
-            <label class="message">Esto es un mensaje</label>
+        
+    </div>
+    <div class="group">
+        <div class="containerGalery" >
+            <div id="containerButtons"></div>
+            <div id="containerImages"></div>
+            
             
         </div>
-        <div class="group">
-            <div class="containerGalery"></div>
-        </div>
+        <script>
+            let arrImg=[
+                "https://mott.pe/noticias/wp-content/uploads/2018/03/10-trucos-para-saber-c%C3%B3mo-tomar-fotos-profesionales-con-el-celular-portada-1280x720.jpg",
+                "https://img.freepik.com/foto-gratis/disparo-gran-angular-solo-arbol-que-crece-cielo-nublado-puesta-sol-rodeada-cesped_181624-22807.jpg?w=2000",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfGGxopc_YZzCqyMwmvZa9oCRUi4A7ztK60ixdxSbYOpd-IkrQfzYaWfVkIRayFHdecoY&usqp=CAU",
+                "https://hubspot.contentools.com/api/v1/media/144652/download/",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW593NZ2Afk0kUQw3mbFZLulYAHKgyGgRI5g&usqp=CAU"
+            ];
+            let containerImages=document.getElementById("containerImages")
+            let containerButtons = document.getElementById("containerButtons")
+            
+            function chanceImage(num){
+                if(num>arrImg.length-1) num=0;
+                for (let image of containerImages.children) {
+                    if (image.id == "image " + num) {
+                        image.className = "imageIn";
+                    } else {
+                        image.className = "imageOff"
+                    }
+                }
+                
+            }
+            for(let n_url in arrImg){
+                let object=document.createElement("img");
+                object.id="image "+n_url;
+                if(n_url==0) object.className="imageIn"
+                else object.className = "imageOff"
+                object.src=arrImg[n_url];
+                containerImages.appendChild(object);
+
+                let button=document.createElement("div");
+                button.className="buttonOn";
+                button.addEventListener("click",(e)=>{
+                    for( let but of containerButtons.children){
+                        but.className="buttonOn"
+                    }
+                    e.target.className="buttonOff"
+                    chanceImage(n_url); 
+                })
+                containerButtons.appendChild(button);
+            }
+            
+
+        </script>
     </div>
 </body>
 </html>
