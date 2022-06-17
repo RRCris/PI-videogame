@@ -1,10 +1,26 @@
-import './App.css';
+import "./components/styles/global.css";
+import { Navbar } from "./components/NavBar";
+import { Landing } from "./components/Landing";
+import { Switch, Route } from "react-router-dom";
+import { Home } from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
-    </div>
+    <>
+      {/*Persistira en toda la App*/}
+      <Navbar />
+
+      {/*Landig*/}
+      <Route path="/" exact>
+        <Landing />
+      </Route>
+
+      <Switch>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
