@@ -33,7 +33,7 @@ export function Card(props) {
   if (Math.floor(inf.rating) >= 4)
     ret = ret.concat(<img className="starFill" alt="" />);
   else ret = ret.concat(<img className="starUnfill" alt="" />);
-  if (Math.floor(inf.rating) == 5)
+  if (Math.floor(inf.rating) === 5)
     ret = ret.concat(<img className="starFill" alt="" />);
   else ret = ret.concat(<img className="starUnfill" alt="" />);
 

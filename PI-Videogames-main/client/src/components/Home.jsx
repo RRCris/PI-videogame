@@ -10,8 +10,12 @@ export function Home() {
           some gems, there is everything here!
         </p>
       </div>
-
-      <Card />
+      <div className="containerCards">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </div>
   );
 }
