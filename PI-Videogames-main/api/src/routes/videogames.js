@@ -9,7 +9,10 @@ routerVideogames.get("/", (req, res) => {
   if (!req.query.name) {
     searchDefault()
       .then((x) => res.status(200).send(x))
-      .catch((e) => res.status(500).send(e));
+      .catch((e) => {
+        res.status(500).send(e);
+        console.log(e);
+      });
   } else {
     let f = {
       origin: [],

@@ -45,7 +45,7 @@ export function Card(props) {
             alt="segunda imagen"
           />
         </div>
-        <h2>{inf.title}</h2>
+        <h2 translate="no">{inf.title}</h2>
         <div className="containerGenres">
           {inf.genres.map((x) => (
             <div key={x}>

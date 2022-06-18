@@ -7,9 +7,12 @@ if (!API_KEY) API_KEY = "fd9e97581013433790aac899770e6d05";
 function searchApi(name) {
   let p = new Promise(async (resolve, reject) => {
     try {
+      console.time("Peticion a la Api");
       let i = await fetch(
         `https://api.rawg.io/api/games?key=${API_KEY}&search=${name.toLowerCase()}&page_size=50`
       );
+      console.timeEnd("Peticion a la Api");
+
       //api.rawg.io/api/games?key=fd9e97581013433790aac899770e6d05&search=halo&page_size=26
       //requerimos toda la informacion que vayamos a necesitar;
       https: i = await i.json();
@@ -48,8 +51,9 @@ function searchApi(name) {
 function detailsAPI(id) {
   let p = new Promise(async (resolve, reject) => {
     try {
+      console.time("Peticion a la Api");
       let i = await fetch(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-
+      console.timeEnd("Peticion a la Api");
       //requerimos toda la informacion que vayamos a necesitar;
       i = await i.json();
       let genres = await getGenres();
@@ -89,10 +93,11 @@ function detailsAPI(id) {
 function searchDefault() {
   let p = new Promise(async (resolve, reject) => {
     try {
+      console.time("Peticion a la Api");
       let i = await fetch(
         `https://api.rawg.io/api/games?key=${API_KEY}&page_size=100`
       );
-
+      console.timeEnd("Peticion a la Api");
       //requerimos toda la informacion que vayamos a necesitar;
       i = await i.json();
       let genres = await getGenres();
@@ -112,6 +117,7 @@ function searchDefault() {
           genres: genres.filter((x) => genresID.includes(x.id)), //inyectamos la informacion desde nuestra db
         };
       });
+      results.sort((a, b) => a.name.localeCompare(b.name));
       resolve(results);
     } catch (error) {
       reject({ err: error });

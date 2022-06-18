@@ -12,7 +12,11 @@ export function Details() {
   let id = useParams().id;
   let dispatch = useDispatch();
   let details = useSelector((state) => state.details);
+
   useEffect(() => {
+    //subir al inicio
+    window.scrollTo(0, 0);
+
     if (details.id !== undefined) {
       document.getElementById("description").innerHTML = details.description;
       document.title = details.name;

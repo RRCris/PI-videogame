@@ -16,6 +16,7 @@ let defaultState = {
     plataforms: [],
     genres: [],
     pag: 1,
+    numPag: 15,
   },
 };
 

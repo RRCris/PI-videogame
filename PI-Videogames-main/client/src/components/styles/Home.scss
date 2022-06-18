@@ -24,6 +24,15 @@
     width: fit-content;
     margin: auto;
   }
+  .containerPag {
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 6vw;
+    position: sticky;
+    top: 40px;
+    z-index: 1000;
+  }
   .containerCards {
     margin: 5vw;
     display: flex;

@@ -30,6 +30,21 @@
   margin: auto;
 }
 
+.Home .containerPag {
+  background-color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 30px 6vw;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
+  z-index: 1000;
+}
+
 .Home .containerCards {
   margin: 5vw;
   display: -webkit-box;

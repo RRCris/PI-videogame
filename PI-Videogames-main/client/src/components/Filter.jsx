@@ -10,6 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 export function Filter() {
   let dispatch = useDispatch();
   let filters = useSelector((state) => state.filters);
+  function Enter(e) {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      let search = document.getElementById("searchIn").value;
+      if (search.length > 0) {
+        getSearch(dispatch, search);
+      }
+    }
+  }
   function addFilterOrigin(e) {
     dispatch(addFilter({ class: "origin", filter: e.target.value }));
   }
@@ -41,6 +50,7 @@ export function Filter() {
               name="search"
               id="searchIn"
               placeholder="Search"
+              onKeyPress={Enter}
             />
             <label>Search</label>
             <div onClick={handleSearch}>
@@ -51,7 +61,6 @@ export function Filter() {
         <div className="order">
           <p>Order by : </p>
           <select name="selectOrder" id="selectOrder" onChange={onOrder}>
-            <option value="default">Without Order</option>
             <option value="alfabetic">alfabetic</option>
             <option value="alfabetic-reverse">alfabetic-reverse</option>
             <option value="most score">most score</option>
@@ -118,7 +127,7 @@ export function Filter() {
               All Plataforms
             </option>
             <option value="xbox">Xbox</option>
-            <option value="playStation">PlayStation</option>
+            <option value="play">PlayStation</option>
             <option value="nintendo">Nintendo</option>
             <option value="atari">Atari</option>
             <option value="android">Android</option>

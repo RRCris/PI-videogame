@@ -8,6 +8,8 @@ function search(name, filters) {
       let resultsAPI = await searchApi(name);
       let results = [...resultsDB, ...resultsAPI];
 
+      results.sort((a, b) => a.name.localeCompare(b.name));
+
       //flitramos por origen
       if (filters.origin.length > 0) {
         if (
