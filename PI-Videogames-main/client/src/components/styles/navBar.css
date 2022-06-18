@@ -39,6 +39,10 @@
           justify-content: center;
 }
 
+.navBar .contentUser button {
+  margin-right: 10px;
+}
+
 .navBar .contentButtons {
   height: 40px;
   min-width: 390px;

@@ -21,9 +21,7 @@
 .Card h2 {
   margin: 0 auto 1vw auto;
   text-align: center;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: 300px;
   letter-spacing: 1px;
 }
 

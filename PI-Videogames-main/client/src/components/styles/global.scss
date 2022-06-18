@@ -10,6 +10,7 @@
   --color-primary: #fa0;
   --color-secondary: #e0f;
   --back-color-primary: #0a1a24;
+  --back-color-secondary: #04141f;
 
   --filter-primary: invert(100%) sepia(0%) saturate(7370%) hue-rotate(305deg)
     brightness(97%) contrast(78%);
@@ -76,8 +77,9 @@ h2 {
 
 p {
   color: var(--letter-color-primary);
-  font-size: 16pt;
+  font-size: 19pt;
   font-weight: 300;
+  line-height: 25pt;
 
   // &::first-letter{
   //     color: var(--color-primary);
@@ -87,6 +89,7 @@ p {
 
 //aqui estan los diferentes inpues de texto el grupo de validacion cuenta con tres clases para cambiar la apariencia respecto a la validacion(error,check,warn)
 .groupInput {
+  caret-color: #0d0;
   position: relative;
   input[type="text"] {
     color: var(--letter-color-primary);
@@ -161,6 +164,7 @@ p {
   width: fit-content;
 
   input[type="text"] {
+    caret-color: #0d0;
     color: var(--letter-color-primary);
     background: var(--back-color-primary);
     border: 1px solid var(--letter-color-primary);
@@ -238,6 +242,7 @@ p {
   width: fit-content;
 
   input[type="text"] {
+    caret-color: #0d0;
     color: var(--letter-color-primary);
     background: var(--back-color-primary);
     border: 2px solid var(--color-primary);
@@ -366,6 +371,7 @@ p {
   position: relative;
 
   textarea {
+    caret-color: #0d0;
     background: var(--back-color-primary);
     border: 1px solid var(--color-primary);
     transition: 0.3s;
@@ -667,8 +673,8 @@ a {
 
   #containerImages {
     position: relative;
-    width: 300px;
-    height: 500px;
+    width: 1000px;
+    height: 400px;
     background: var(--back-color-primary);
 
     & img {
@@ -730,12 +736,8 @@ a {
 
   p {
     display: inline-block;
-
-    &::after {
-      content: "Xbox";
-      color: #cfc;
-      display: inline-block;
-    }
+    color: #cfc;
+    display: inline-block;
   }
 }
 
@@ -753,11 +755,8 @@ a {
   p {
     display: inline-block;
 
-    &::after {
-      content: "PlayStation";
-      color: #ccf;
-      display: inline-block;
-    }
+    color: #ccf;
+    display: inline-block;
   }
 }
 
@@ -775,11 +774,8 @@ a {
   p {
     display: inline-block;
 
-    &::after {
-      content: "Nintendo";
-      color: #fcc;
-      display: inline-block;
-    }
+    color: #fcc;
+    display: inline-block;
   }
 }
 .groupAtari {
@@ -796,11 +792,8 @@ a {
   p {
     display: inline-block;
 
-    &::after {
-      content: "Atari";
-      color: #fc7;
-      display: inline-block;
-    }
+    color: #fc7;
+    display: inline-block;
   }
 }
 .groupAndroid {
@@ -816,11 +809,9 @@ a {
 
   p {
     display: inline-block;
-    &::after {
-      color: #ffc;
-      display: inline-block;
-      content: "Android";
-    }
+
+    color: #ffc;
+    display: inline-block;
   }
 }
 
@@ -837,12 +828,8 @@ a {
 
   p {
     display: inline-block;
-
-    &::after {
-      color: #bbb;
-      display: inline-block;
-      content: "PC";
-    }
+    color: #bbb;
+    display: inline-block;
   }
 }
 
@@ -859,14 +846,9 @@ a {
 
   p {
     display: inline-block;
-
-    &::after {
-      margin-left: 5px;
-      font-weight: 200;
-      color: #fcf;
-      display: inline-block;
-      content: "Console";
-    }
+    margin-left: 5px;
+    font-weight: 200;
+    color: #fcf;
   }
 }
 
@@ -890,6 +872,7 @@ a {
   font-weight: 600;
   padding: 1px;
   border-radius: 6px;
-  background-color: #aaa;
+  display: inline-block;
+  background-color: #bbb;
   transition: 0.5s;
 }

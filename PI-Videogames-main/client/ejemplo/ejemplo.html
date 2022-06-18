@@ -134,25 +134,23 @@
         
     </div>
     <div class="group">
-        <div class="containerGalery" >
+        <div class="containerGalery">
             <div id="containerButtons"></div>
             <div id="containerImages"></div>
-            
-            
         </div>
         <script>
-            let arrImg=[
+            let arrImg = [
                 "https://mott.pe/noticias/wp-content/uploads/2018/03/10-trucos-para-saber-c%C3%B3mo-tomar-fotos-profesionales-con-el-celular-portada-1280x720.jpg",
                 "https://img.freepik.com/foto-gratis/disparo-gran-angular-solo-arbol-que-crece-cielo-nublado-puesta-sol-rodeada-cesped_181624-22807.jpg?w=2000",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfGGxopc_YZzCqyMwmvZa9oCRUi4A7ztK60ixdxSbYOpd-IkrQfzYaWfVkIRayFHdecoY&usqp=CAU",
                 "https://hubspot.contentools.com/api/v1/media/144652/download/",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW593NZ2Afk0kUQw3mbFZLulYAHKgyGgRI5g&usqp=CAU"
             ];
-            let containerImages=document.getElementById("containerImages")
+            let containerImages = document.getElementById("containerImages")
             let containerButtons = document.getElementById("containerButtons")
-            
-            function chanceImage(num){
-                if(num>arrImg.length-1) num=0;
+
+            function chanceImage(num) {
+                if (num > arrImg.length - 1) num = 0;
                 for (let image of containerImages.children) {
                     if (image.id == "image " + num) {
                         image.className = "imageIn";
@@ -160,28 +158,28 @@
                         image.className = "imageOff"
                     }
                 }
-                
+
             }
-            for(let n_url in arrImg){
-                let object=document.createElement("img");
-                object.id="image "+n_url;
-                if(n_url==0) object.className="imageIn"
+            for (let n_url in arrImg) {
+                let object = document.createElement("img");
+                object.id = "image " + n_url;
+                if (n_url == 0) object.className = "imageIn"
                 else object.className = "imageOff"
-                object.src=arrImg[n_url];
+                object.src = arrImg[n_url];
                 containerImages.appendChild(object);
 
-                let button=document.createElement("div");
-                button.className="buttonOn";
-                button.addEventListener("click",(e)=>{
-                    for( let but of containerButtons.children){
-                        but.className="buttonOn"
+                let button = document.createElement("div");
+                button.className = "buttonOn";
+                button.addEventListener("click", (e) => {
+                    for (let but of containerButtons.children) {
+                        but.className = "buttonOn"
                     }
-                    e.target.className="buttonOff"
-                    chanceImage(n_url); 
+                    e.target.className = "buttonOff"
+                    chanceImage(n_url);
                 })
                 containerButtons.appendChild(button);
             }
-            
+
 
         </script>
     </div>

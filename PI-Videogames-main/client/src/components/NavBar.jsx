@@ -3,8 +3,8 @@ export function Navbar() {
   return (
     <div className="navBar">
       <div className="contentUser">
-        <button>Iniciar seccion</button>
-        <button className="buttonOptinal">Registrar</button>
+        <button>Log In</button>
+        <button className="buttonOptinal">Registrer me</button>
       </div>
       <div className="contentButtons">
         <button className="buttonNav">Home</button>

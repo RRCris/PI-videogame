@@ -31,5 +31,8 @@
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  border-radius: 30px;
+  background-color: var(--back-color-secondary);
+  border: 2px dotted var(--color-primary);
 }
 /*# sourceMappingURL=Home.css.map */

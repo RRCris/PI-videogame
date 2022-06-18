@@ -3,6 +3,7 @@ import { Navbar } from "./components/NavBar";
 import { Landing } from "./components/Landing";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
+import { Details } from "./components/Details";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/details/:id">
+          <Details />
         </Route>
       </Switch>
     </>

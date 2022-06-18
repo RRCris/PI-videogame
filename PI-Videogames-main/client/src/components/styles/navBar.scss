@@ -21,6 +21,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    button {
+      margin-right: 10px;
+    }
   }
   & .contentButtons {
     height: 40px;

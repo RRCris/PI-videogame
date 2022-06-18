@@ -12,6 +12,7 @@
   --color-primary: #fa0;
   --color-secondary: #e0f;
   --back-color-primary: #0a1a24;
+  --back-color-secondary: #04141f;
   --filter-primary: invert(100%) sepia(0%) saturate(7370%) hue-rotate(305deg)
     brightness(97%) contrast(78%);
   --filter-warn: invert(99%) sepia(72%) saturate(5489%) hue-rotate(359deg)
@@ -77,11 +78,13 @@ h2 {
 
 p {
   color: var(--letter-color-primary);
-  font-size: 16pt;
+  font-size: 19pt;
   font-weight: 300;
+  line-height: 25pt;
 }
 
 .groupInput {
+  caret-color: #0d0;
   position: relative;
 }
 
@@ -207,6 +210,7 @@ p {
 }
 
 .groupInputSearch input[type="text"] {
+  caret-color: #0d0;
   color: var(--letter-color-primary);
   background: var(--back-color-primary);
   border: 1px solid var(--letter-color-primary);
@@ -322,6 +326,7 @@ p {
 }
 
 .groupInputValid input[type="text"] {
+  caret-color: #0d0;
   color: var(--letter-color-primary);
   background: var(--back-color-primary);
   border: 2px solid var(--color-primary);
@@ -482,6 +487,7 @@ p {
 }
 
 .groupTextarea textarea {
+  caret-color: #0d0;
   background: var(--back-color-primary);
   border: 1px solid var(--color-primary);
   -webkit-transition: 0.3s;
@@ -805,8 +811,8 @@ a:visited {
 
 .containerGalery #containerImages {
   position: relative;
-  width: 300px;
-  height: 500px;
+  width: 1000px;
+  height: 400px;
   background: var(--back-color-primary);
 }
 
@@ -874,10 +880,6 @@ a:visited {
 
 .groupXbox p {
   display: inline-block;
-}
-
-.groupXbox p::after {
-  content: "Xbox";
   color: #cfc;
   display: inline-block;
 }
@@ -894,10 +896,6 @@ a:visited {
 
 .groupPlay p {
   display: inline-block;
-}
-
-.groupPlay p::after {
-  content: "PlayStation";
   color: #ccf;
   display: inline-block;
 }
@@ -914,10 +912,6 @@ a:visited {
 
 .groupNintendo p {
   display: inline-block;
-}
-
-.groupNintendo p::after {
-  content: "Nintendo";
   color: #fcc;
   display: inline-block;
 }
@@ -934,10 +928,6 @@ a:visited {
 
 .groupAtari p {
   display: inline-block;
-}
-
-.groupAtari p::after {
-  content: "Atari";
   color: #fc7;
   display: inline-block;
 }
@@ -954,12 +944,8 @@ a:visited {
 
 .groupAndroid p {
   display: inline-block;
-}
-
-.groupAndroid p::after {
   color: #ffc;
   display: inline-block;
-  content: "Android";
 }
 
 .groupPC img {
@@ -974,12 +960,8 @@ a:visited {
 
 .groupPC p {
   display: inline-block;
-}
-
-.groupPC p::after {
   color: #bbb;
   display: inline-block;
-  content: "PC";
 }
 
 .groupConsole img {
@@ -994,14 +976,9 @@ a:visited {
 
 .groupConsole p {
   display: inline-block;
-}
-
-.groupConsole p::after {
   margin-left: 5px;
   font-weight: 200;
   color: #fcf;
-  display: inline-block;
-  content: "Console";
 }
 
 .starFill {
@@ -1025,7 +1002,8 @@ a:visited {
   font-weight: 600;
   padding: 1px;
   border-radius: 6px;
-  background-color: #aaa;
+  display: inline-block;
+  background-color: #bbb;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
