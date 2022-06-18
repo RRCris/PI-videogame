@@ -5,6 +5,7 @@ import { getDetails } from "../redux/actions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import imgError from "../images/onerror.jpg";
+import { Loader } from "./Loader";
 
 export function Details() {
   //use the hoocks
@@ -12,10 +13,10 @@ export function Details() {
   let dispatch = useDispatch();
   let details = useSelector((state) => state.details);
   useEffect(() => {
-    if (details.id != undefined) {
+    if (details.id !== undefined) {
       document.getElementById("description").innerHTML = details.description;
+      document.title = details.name;
     }
-    console.log(details);
     let arrImg = details.image || [];
     let containerImages = document.getElementById("containerImages");
     let containerButtons = document.getElementById("containerButtons");
@@ -23,7 +24,7 @@ export function Details() {
     function chanceImage(num) {
       if (num > arrImg.length - 1) num = 0;
       for (let image of containerImages.children) {
-        if (image.id == "image " + num) {
+        if (image.id === "image " + num) {
           image.className = "imageIn";
         } else {
           image.className = "imageOff";
@@ -33,7 +34,7 @@ export function Details() {
     for (let n_url in arrImg) {
       let object = document.createElement("img");
       object.id = "image " + n_url;
-      if (n_url == 0) object.className = "imageIn";
+      if (n_url === 0) object.className = "imageIn";
       else object.className = "imageOff";
       object.src = arrImg[n_url];
       object.addEventListener("error", onError);
@@ -109,7 +110,7 @@ export function Details() {
             <div id="containerImages"></div>
           </div>
         </div>
-        <div className="containerPlataforms">
+        <div className="containerPlataforms" translate="no">
           {details.plataform.map(iterPlataforms)}
         </div>
         <div className="moreInfo">
@@ -130,7 +131,7 @@ export function Details() {
   } else {
     return (
       <div>
-        <h1>No existe ninguna informacion</h1>
+        <Loader />
       </div>
     );
   }

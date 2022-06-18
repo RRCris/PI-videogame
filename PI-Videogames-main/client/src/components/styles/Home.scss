@@ -19,6 +19,11 @@
       }
     }
   }
+  .containerFilters {
+    color: var(--letter-color-primary);
+    width: fit-content;
+    margin: auto;
+  }
   .containerCards {
     margin: 5vw;
     display: flex;

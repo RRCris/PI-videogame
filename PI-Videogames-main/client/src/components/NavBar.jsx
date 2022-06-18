@@ -12,13 +12,6 @@ export function Navbar() {
         <button className="buttonNav">Genres</button>
         <button className="buttonNav">Plataforms</button>
       </div>
-      <div className="contentSearch">
-        <div className="groupInputSearch">
-          <input type="text" name="search" id="" placeholder="Search" />
-          <label>Search</label>
-          <img />
-        </div>
-      </div>
     </div>
   );
 }

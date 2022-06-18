@@ -8,19 +8,26 @@ function searchApi(name) {
   let p = new Promise(async (resolve, reject) => {
     try {
       let i = await fetch(
-        `https://api.rawg.io/api/games?key=${API_KEY}&search=${name.toLowerCase()}&page_size=26`
+        `https://api.rawg.io/api/games?key=${API_KEY}&search=${name.toLowerCase()}&page_size=50`
       );
-
+      //api.rawg.io/api/games?key=fd9e97581013433790aac899770e6d05&search=halo&page_size=26
       //requerimos toda la informacion que vayamos a necesitar;
-      i = await i.json();
+      https: i = await i.json();
       let genres = await getGenres();
       let plataforms = await getPlataforms();
 
       //vamos a formatear el resultado para que sea unanime con la DB
       let results = i.results.map((x) => {
         //necesitamos solo los id´s de las plataformas y generos por que nosotros ya tenemos la informacion
-        let plataformsID = x.platforms.map((x) => x.platform.id);
-        let genresID = x.genres.map((x) => x.id);
+
+        let plataformsID = [];
+        let genresID = [];
+        try {
+          //algunos resultads son nulos
+          plataformsID = x.platforms.map((x) => x.platform.id);
+          genresID = x.genres.map((x) => x.id);
+        } catch (error) {}
+
         return {
           id: x.id,
           name: x.name,

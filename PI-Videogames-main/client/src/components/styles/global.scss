@@ -167,8 +167,8 @@ p {
     caret-color: #0d0;
     color: var(--letter-color-primary);
     background: var(--back-color-primary);
-    border: 1px solid var(--letter-color-primary);
-    max-width: 400px;
+    border: 2px solid var(--letter-color-primary);
+    width: 500px;
     font-size: 16pt;
     font-weight: 300;
     padding: 10px 20px;
@@ -875,4 +875,15 @@ a {
   display: inline-block;
   background-color: #bbb;
   transition: 0.5s;
+}
+
+.loader {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  object {
+    width: 100px;
+    filter: invert(82%) sepia(33%) saturate(6486%) hue-rotate(358deg)
+      brightness(101%) contrast(106%);
+  }
 }

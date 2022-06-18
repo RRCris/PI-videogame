@@ -1,7 +1,6 @@
 import "./styles/Card.css";
 import imgError from "../images/onerror.jpg";
 import { Link } from "react-router-dom";
-import { Details } from "./Details";
 
 export function Card(props) {
   //por si las imagen no carga
@@ -25,8 +24,8 @@ export function Card(props) {
   let ret = [];
   for (let i = 0; i < 5; i++) {
     if (Math.floor(inf.rating) >= i + 1) {
-      ret = ret.concat(<img className="starFill" alt="" />);
-    } else ret = ret.concat(<img className="starUnfill" alt="" />);
+      ret = ret.concat(<img className="starFill" alt="" key={i} />);
+    } else ret = ret.concat(<img className="starUnfill" alt="" key={i} />);
   }
 
   return (
@@ -49,9 +48,9 @@ export function Card(props) {
         <h2>{inf.title}</h2>
         <div className="containerGenres">
           {inf.genres.map((x) => (
-            <>
+            <div key={x}>
               <p className="genre">{x}</p>
-            </>
+            </div>
           ))}
         </div>
         <div className="containerScore">{ret}</div>

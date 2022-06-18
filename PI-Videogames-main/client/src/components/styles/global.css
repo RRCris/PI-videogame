@@ -213,8 +213,8 @@ p {
   caret-color: #0d0;
   color: var(--letter-color-primary);
   background: var(--back-color-primary);
-  border: 1px solid var(--letter-color-primary);
-  max-width: 400px;
+  border: 2px solid var(--letter-color-primary);
+  width: 500px;
   font-size: 16pt;
   font-weight: 300;
   padding: 10px 20px;
@@ -1006,5 +1006,21 @@ a:visited {
   background-color: #bbb;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+}
+
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.loader object {
+  width: 100px;
+  -webkit-filter: invert(82%) sepia(33%) saturate(6486%) hue-rotate(358deg) brightness(101%) contrast(106%);
+          filter: invert(82%) sepia(33%) saturate(6486%) hue-rotate(358deg) brightness(101%) contrast(106%);
 }
 /*# sourceMappingURL=global.css.map */
