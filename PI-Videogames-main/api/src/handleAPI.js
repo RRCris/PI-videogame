@@ -72,7 +72,7 @@ function detailsAPI(id) {
         rating_count: i.ratings_count,
         launch: i.released,
         description: i.description,
-        plataform: plataforms.filter((x) => plataformsID.includes(x.id)),
+        plataforms: plataforms.filter((x) => plataformsID.includes(x.id)),
         genres: genres.filter((x) => genresID.includes(x.id)),
       };
       //realizamos un pedido adicional para rescatar las imagenes

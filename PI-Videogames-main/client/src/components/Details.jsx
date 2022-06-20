@@ -12,7 +12,7 @@ export function Details() {
   let id = useParams().id;
   let dispatch = useDispatch();
   let details = useSelector((state) => state.details);
-
+  console.log(details);
   useEffect(() => {
     //subir al inicio
     window.scrollTo(0, 0);
@@ -115,7 +115,7 @@ export function Details() {
           </div>
         </div>
         <div className="containerPlataforms" translate="no">
-          {details.plataform.map(iterPlataforms)}
+          {details.plataforms.map(iterPlataforms)}
         </div>
         <div className="moreInfo">
           <p id="description"></p>

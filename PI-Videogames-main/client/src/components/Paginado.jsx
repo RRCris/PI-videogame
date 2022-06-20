@@ -8,7 +8,8 @@ export function Paginado(props) {
   function next() {
     let pag = state.filters.pag;
     let num = state.filters.numPag;
-    if (pag * num < state.first100.length) {
+    console.log();
+    if (pag * num < props.results.length) {
       dispatch(nextPag());
     }
   }

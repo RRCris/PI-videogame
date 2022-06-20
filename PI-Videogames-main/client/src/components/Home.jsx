@@ -15,7 +15,7 @@ export function Home() {
   //subir al inicio
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [store]);
 
   //peticion para llenar stack
   if (results.length === 0) {
@@ -52,14 +52,15 @@ export function Home() {
       return result;
     });
   }
+  let resultsPag = results;
   //paginado
   results = results.filter((x) => {
     let pag = store.filters.pag;
     let num = store.filters.numPag;
     let result = false;
     if (
-      results.indexOf(x) <= pag * num &&
-      results.indexOf(x) > (pag - 1) * num
+      results.indexOf(x) < pag * num &&
+      results.indexOf(x) >= (pag - 1) * num
     ) {
       result = true;
     }
@@ -79,7 +80,7 @@ export function Home() {
         <Filter />
       </div>
       <div className="containerPag">
-        <Paginado />
+        <Paginado results={resultsPag} />
       </div>
       <div className="containerCards">
         {results.length === 0 ? (
