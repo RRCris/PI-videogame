@@ -191,6 +191,7 @@ p {
 }
 
 .groupInput label {
+  pointer-events: none;
   padding-left: 20px;
   color: #fa00;
   font-size: 16pt;
@@ -291,6 +292,7 @@ p {
 }
 
 .groupInputSearch label {
+  pointer-events: none;
   padding-left: 20px;
   color: #fa00;
   font-size: 16pt;

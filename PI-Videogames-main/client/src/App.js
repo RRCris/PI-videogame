@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Details } from "./components/Details";
 import { FormUser } from "./components/FormUser";
+import { FormLogIn } from "./components/FormLogIn";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/register">
           <FormUser />
+        </Route>
+        <Route path="/login">
+          <FormLogIn />
         </Route>
       </Switch>
     </>

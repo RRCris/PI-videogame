@@ -1,8 +1,10 @@
 import "./styles/FormUser.css";
-import { useEffect } from "react";
+
+import { useHistory } from "react-router-dom";
 
 export function FormUser() {
   document.title = "Register you";
+  let history = useHistory();
   function isEmail(string) {
     let reg = new RegExp(
       "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
@@ -132,7 +134,13 @@ export function FormUser() {
               body: body,
             })
               .then((x) => x.json())
-              .then((r) => console.log(r));
+              .then((r) => {
+                if (r.id) {
+                  document.getElementById("inf").innerText =
+                    "you has been register in this platform";
+                  setTimeout(() => history.push("/home"), 2000);
+                }
+              });
           }
         }
       }
@@ -198,7 +206,7 @@ export function FormUser() {
             Esto es un mensaje
           </label>
         </div>
-        <p>complet all spaces</p>
+        <p id="inf">complet all spaces</p>
         <div className="containerButtons">
           <button onClick={handleRegister}>Register you</button>
         </div>

@@ -4,7 +4,12 @@ export function Navbar() {
   return (
     <div className="navBar">
       <div className="contentUser">
-        <button>Log In</button>
+        <Link
+          to="/login"
+          style={{ background: "var(--back-color-primary)", height: "40px" }}
+        >
+          <button>Log In</button>
+        </Link>
         <Link
           to="/register"
           style={{ background: "var(--back-color-primary)", height: "40px" }}

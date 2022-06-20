@@ -13,6 +13,7 @@ let defaultState = {
   first100: [],
   details: { id: undefined },
   order: "",
+  user: {},
   filters: {
     origin: [],
     plataforms: [],
