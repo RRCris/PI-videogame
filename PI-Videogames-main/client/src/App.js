@@ -4,6 +4,7 @@ import { Landing } from "./components/Landing";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Details } from "./components/Details";
+import { FormUser } from "./components/FormUser";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/details/:id">
           <Details />
+        </Route>
+        <Route path="/register">
+          <FormUser />
         </Route>
       </Switch>
     </>

@@ -80,7 +80,6 @@ export function Home() {
       </div>
       <div className="containerPag">
         <Paginado />
-        <p>Pag: {store.filters.pag}</p>
       </div>
       <div className="containerCards">
         {results.length === 0 ? (

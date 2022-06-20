@@ -21,7 +21,7 @@ export function Paginado(props) {
   return (
     <div className="Paginado">
       <button onClick={prev}>Previus</button>
-
+      <p translate="no">Pag: {state.filters.pag}</p>
       <button onClick={next}>Next</button>
     </div>
   );

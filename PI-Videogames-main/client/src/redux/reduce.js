@@ -36,13 +36,18 @@ function sortScoreReverse(a, b) {
 }
 export function Reducer(state, action) {
   if (!state) return defaultState;
-  let tempfilters;
+
   switch (action.type) {
     case SAVEFIRST100:
-      return { ...state, first100: action.payload };
+      state.filters.pag = 1;
+      return {
+        ...state,
+        first100: action.payload,
+      };
     case SAVEDETAILS:
       return { ...state, details: action.payload };
     case ORDERFIRST100:
+      state.filters.pag = 1;
       let arr = state.first100;
       if (action.payload === "alfabetic") {
         arr = arr.sort(sortAlfabetic);
@@ -56,54 +61,54 @@ export function Reducer(state, action) {
 
       return { ...state, first100: arr, order: action.payload };
     case ADDFILTER:
-      tempfilters = state.filters;
+      state.filters.pag = 1;
+
       if (action.payload.class === "origin") {
-        tempfilters.origin = [action.payload.filter];
+        state.filters.origin = [action.payload.filter];
       } else if (
         action.payload.class === "plataforms" &&
-        !tempfilters.plataforms.includes(action.payload.filter)
+        !state.filters.plataforms.includes(action.payload.filter)
       ) {
-        tempfilters.plataforms.push(action.payload.filter);
+        state.filters.plataforms.push(action.payload.filter);
       } else if (
         action.payload.class === "genres" &&
-        !tempfilters.genres.includes(action.payload.filter)
+        !state.filters.genres.includes(action.payload.filter)
       ) {
-        tempfilters.genres.push(action.payload.filter);
+        state.filters.genres.push(action.payload.filter);
       }
 
-      return { ...state, filters: tempfilters };
+      return { ...state };
     case DELFILTER:
-      tempfilters = state.filters;
-      if (tempfilters.origin.includes(action.payload)) {
-        tempfilters.origin = [];
-      } else if (tempfilters.plataforms.includes(action.payload)) {
-        let i = tempfilters.plataforms.indexOf(action.payload.toString());
-        tempfilters.plataforms.splice(i, 1);
-      } else if (tempfilters.genres.includes(action.payload)) {
-        let i = tempfilters.genres.indexOf(action.payload.toString());
-        tempfilters.genres.splice(i, 1);
+      state.filters.pag = 1;
+
+      if (state.filters.origin.includes(action.payload)) {
+        state.filters.origin = [];
+      } else if (state.filters.plataforms.includes(action.payload)) {
+        let i = state.filters.plataforms.indexOf(action.payload.toString());
+        state.filters.plataforms.splice(i, 1);
+      } else if (state.filters.genres.includes(action.payload)) {
+        let i = state.filters.genres.indexOf(action.payload.toString());
+        state.filters.genres.splice(i, 1);
       }
 
-      return { ...state, filters: tempfilters };
+      return { ...state };
 
     case CLEARFILTER:
-      tempfilters = state.filters;
+      state.filters.pag = 1;
       if (action.payload.class === "origin") {
-        tempfilters.origin = [];
+        state.filters.origin = [];
       } else if (action.payload.class === "plataforms") {
-        tempfilters.plataforms = [];
+        state.filters.plataforms = [];
       } else if (action.payload.class === "genres") {
-        tempfilters.genres = [];
+        state.filters.genres = [];
       }
-      return { ...state, filters: tempfilters };
+      return { ...state };
     case NEXTPAG:
-      let filterNEXTPAG = state.filters;
-      filterNEXTPAG.pag += 1;
-      return { ...state, filters: filterNEXTPAG };
+      state.filters.pag += 1;
+      return { ...state };
     case PREVPAG:
-      let filterPREVPAG = state.filters;
-      filterPREVPAG.pag -= 1;
-      return { ...state, filters: filterPREVPAG };
+      state.filters.pag -= 1;
+      return { ...state };
     default:
       return state;
   }
