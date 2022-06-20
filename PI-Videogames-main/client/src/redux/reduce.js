@@ -5,6 +5,8 @@ import {
   ADDFILTER,
   DELFILTER,
   CLEARFILTER,
+  NEXTPAG,
+  PREVPAG,
 } from "./actionsTypes";
 
 let defaultState = {
@@ -94,6 +96,14 @@ export function Reducer(state, action) {
         tempfilters.genres = [];
       }
       return { ...state, filters: tempfilters };
+    case NEXTPAG:
+      let filterNEXTPAG = state.filters;
+      filterNEXTPAG.pag += 1;
+      return { ...state, filters: filterNEXTPAG };
+    case PREVPAG:
+      let filterPREVPAG = state.filters;
+      filterPREVPAG.pag -= 1;
+      return { ...state, filters: filterPREVPAG };
     default:
       return state;
   }

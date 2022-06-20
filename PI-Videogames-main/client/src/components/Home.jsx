@@ -5,6 +5,7 @@ import { getfirst100 } from "../redux/actions";
 import { Loader } from "./Loader";
 import { Filter } from "./Filter";
 import { useEffect } from "react";
+import { Paginado } from "./Paginado";
 
 export function Home() {
   let store = useSelector((store) => store);
@@ -51,8 +52,19 @@ export function Home() {
       return result;
     });
   }
-
-  console.log(results);
+  //paginado
+  results = results.filter((x) => {
+    let pag = store.filters.pag;
+    let num = store.filters.numPag;
+    let result = false;
+    if (
+      results.indexOf(x) <= pag * num &&
+      results.indexOf(x) > (pag - 1) * num
+    ) {
+      result = true;
+    }
+    return result;
+  });
 
   return (
     <div className="Home">
@@ -67,9 +79,8 @@ export function Home() {
         <Filter />
       </div>
       <div className="containerPag">
-        <button>Previus Page</button>
-        <p>{store.filters.pag}</p>
-        <button>Next Page</button>
+        <Paginado />
+        <p>Pag: {store.filters.pag}</p>
       </div>
       <div className="containerCards">
         {results.length === 0 ? (

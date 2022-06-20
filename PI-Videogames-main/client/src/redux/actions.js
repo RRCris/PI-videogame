@@ -5,6 +5,8 @@ import {
   ADDFILTER,
   DELFILTER,
   CLEARFILTER,
+  NEXTPAG,
+  PREVPAG,
 } from "./actionsTypes";
 
 export function getfirst100(dispatch) {
@@ -56,5 +58,18 @@ export function deleteFilter(result) {
   return {
     type: DELFILTER,
     payload: result,
+  };
+}
+export function nextPag() {
+  return {
+    type: NEXTPAG,
+    payload: 1,
+  };
+}
+
+export function prevPag() {
+  return {
+    type: PREVPAG,
+    payload: -1,
   };
 }

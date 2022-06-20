@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { getGenres, qualify } = require("../handleDB");
+const { route } = require("./user");
 const routerUser = require("./user");
 // Importar todos los routers;
 const routerVideogames = require("./videogames");
@@ -7,6 +8,10 @@ const routerVideogames = require("./videogames");
 const router = Router();
 
 // Configurar los routers
+router.use((req, res, next) => {
+  console.log("Entro al Server");
+  next();
+});
 router.use("/videogames", routerVideogames);
 router.use("/user", routerUser);
 

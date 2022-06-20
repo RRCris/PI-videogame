@@ -25,13 +25,22 @@
     margin: auto;
   }
   .containerPag {
-    background-color: red;
-    display: flex;
-    justify-content: space-between;
-    margin: 30px 6vw;
     position: sticky;
-    top: 40px;
+    top: 42px;
     z-index: 1000;
+
+    p {
+      width: fit-content;
+      margin: 0 auto;
+      padding: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 10px;
+
+      background-color: var(--back-color-secondary);
+    }
+    @media only screen and (max-width: 430px) {
+      top: 82px;
+    }
   }
   .containerCards {
     margin: 5vw;
