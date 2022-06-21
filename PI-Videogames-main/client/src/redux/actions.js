@@ -26,11 +26,22 @@ export function getSearch(dispatch, search, loader) {
     });
 }
 
-export function getDetails(dispatch, id) {
+export function getDetails(dispatch, history, id) {
   fetch("http://localhost:3001/videogames/" + id)
     .then((x) => x.json())
     .then((x) => {
-      dispatch(saveDetails(x));
+      //evitar catch intencionales
+      if (id === "RR") history.push("/details/1");
+
+      if (x.id) {
+        if (x.id.toString() === id) {
+          dispatch(saveDetails(x));
+        } else {
+          history.push("/details/1");
+        }
+      } else {
+        history.push("/details/1");
+      }
     });
 }
 

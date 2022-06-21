@@ -37,20 +37,24 @@ function searchDB(name) {
 
 function detailsDB(id) {
   let p = new Promise((resolve, reject) => {
-    Videogame.findAll({
-      where: {
-        id,
-      },
-      include: [Plataform, Genre],
-    })
-      .then((r) => {
-        if (r.length > 0) {
-          r[0].dataValues.image = [r[0].dataValues.image];
-          r[0].dataValues.id = "R" + r[0].dataValues.id;
-          resolve(r[0].dataValues);
-        } else resolve(r);
+    try {
+      Videogame.findAll({
+        where: {
+          id,
+        },
+        include: [Plataform, Genre],
       })
-      .catch((e) => reject(e));
+        .then((r) => {
+          if (r.length > 0) {
+            r[0].dataValues.image = [r[0].dataValues.image];
+            r[0].dataValues.id = "R" + r[0].dataValues.id;
+            resolve(r[0].dataValues);
+          } else resolve(r);
+        })
+        .catch((e) => reject(e));
+    } catch (error) {
+      reject({ err: "error en la base de datos" });
+    }
   });
   return p;
 }
@@ -289,14 +293,6 @@ function qualify(userId, videogameId, score) {
 // updateGenres();
 // updatePlataforms();
 // addUser("antonio", "ant", "1234", "correo@gmail.com");
-// createVideogame(
-//   "mario",
-//   "no existe recurso",
-//   Date.now(),
-//   "aqui va la descripcion",
-//   [],
-//   []
-// );
 
 module.exports = {
   searchDB,

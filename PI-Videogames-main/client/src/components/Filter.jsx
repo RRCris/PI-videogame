@@ -14,9 +14,11 @@ export function Filter() {
   function Enter(e) {
     if (e.code === "Enter") {
       e.preventDefault();
+      let loader = document.getElementById("miniLoader");
+      loader.style.display = "inline-block";
       let search = document.getElementById("searchIn").value;
       if (search.length > 0) {
-        getSearch(dispatch, search);
+        getSearch(dispatch, search, loader);
       }
     }
   }

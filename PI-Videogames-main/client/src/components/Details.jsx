@@ -4,8 +4,6 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetails } from "../redux/actions";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import imgError from "../images/onerror.jpg";
 import { Loader } from "./Loader";
 
 export function Details() {
@@ -14,12 +12,11 @@ export function Details() {
   let id = useParams().id;
   let dispatch = useDispatch();
   let details = useSelector((state) => state.details);
-
+  //evitar catch intencionales
+  if (id === "RR") id = "RX";
   //actualizar imagenes y botones cuando lleguen los resultados
   useEffect(() => {
     if (details.id.toString() === id) {
-      console.log(details);
-
       //subir al inicio
       window.scrollTo(0, 0);
       console.log();
@@ -79,9 +76,8 @@ export function Details() {
   }, [details]);
 
   //get data
-  console.log(details.id.toString(), id);
   if (details.id.toString() !== id) {
-    getDetails(dispatch, id);
+    getDetails(dispatch, history, id);
   }
 
   //por si las imagen no carga
@@ -119,14 +115,23 @@ export function Details() {
     } else ret = ret.concat(<img className="starUnfill" alt="" key={i} />);
   }
 
+  //formateamos fecha
+  function formatDate(string) {
+    let obj = new Date(string);
+    return obj.toLocaleString();
+  }
   if (details.id.toString() === id) {
     return (
       <div className="Details">
         <button onClick={() => history.goBack()}>Go to Back</button>
 
         <div className="header">
-          <h1>{details.name}</h1>
-          <h2>{"Launch on: " + details.launch}</h2>
+          <h1 translate="no">{details.name}</h1>
+          <h2>
+            {details.id.toString()[0] === "R"
+              ? "Launch on: " + formatDate(details.launch)
+              : "Launch on: " + details.launch}
+          </h2>
 
           <div className="containerGalery">
             <div id="containerButtons"></div>

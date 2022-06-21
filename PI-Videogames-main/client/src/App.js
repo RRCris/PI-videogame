@@ -7,7 +7,6 @@ import { Details } from "./components/Details";
 import { FormUser } from "./components/FormUser";
 import { FormLogIn } from "./components/FormLogIn";
 import { Create } from "./components/Create";
-import { DetailsDebbug } from "./components/DetailsDebugger";
 
 function App() {
   return (

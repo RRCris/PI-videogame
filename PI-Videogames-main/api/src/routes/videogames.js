@@ -33,7 +33,6 @@ routerVideogames.get("/:id", (req, res) => {
   details(req.params.id)
     .then((x) => res.status(200).send(x))
     .catch((e) => {
-      console.log(e);
       res.status(500).send(e);
     });
 });

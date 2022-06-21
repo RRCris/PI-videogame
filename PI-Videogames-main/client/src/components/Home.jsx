@@ -27,7 +27,7 @@ export function Home() {
   if (store.filters.origin.length > 0) {
     if (store.filters.origin === "Api")
       results = results.filter((x) => x.id.toString()[0] !== "R");
-    else results = results.filter((x) => x.id.toString()[0] !== "R");
+    else results = results.filter((x) => x.id.toString()[0] === "R");
   }
   //plataforms
   if (store.filters.plataforms.length > 0) {

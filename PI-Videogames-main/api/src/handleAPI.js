@@ -56,6 +56,7 @@ function detailsAPI(id) {
       console.timeEnd("Peticion a la Api");
       //requerimos toda la informacion que vayamos a necesitar;
       i = await i.json();
+
       let genres = await getGenres();
       let plataforms = await getPlataforms();
 

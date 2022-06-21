@@ -1,8 +1,16 @@
 import "./styles/Card.css";
 import imgError from "../images/onerror.jpg";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export function Card(props) {
+  //desencriptamos las imagenes
+  useEffect(() => {
+    if (inf.id.toString()[0] === "R") {
+      let x = atob(props.data.image);
+      document.getElementById("image").setAttribute("src", x);
+    }
+  }, [props]);
   //por si las imagen no carga
   let onError = (e) => {
     if (e.target.src !== "../images/onerror.jpg") {
@@ -33,13 +41,14 @@ export function Card(props) {
       <Link to={`/details/${inf.id}`}>
         <div className="containerImages">
           <img
-            src={inf.image[0] ? inf.image[0] : ""}
+            src={inf.image[1] ? inf.image[1] : ""}
             className="firstImage"
             onError={onError}
             alt="primera imagen"
           />
           <img
             src={inf.image[1] ? inf.image[1] : ""}
+            id="image"
             className="secondImage"
             onError={onError}
             alt="segunda imagen"
