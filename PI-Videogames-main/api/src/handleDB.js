@@ -266,7 +266,7 @@ function qualify(userId, videogameId, score) {
         return reject({ err: "don´t exists the user or the videogame" });
 
       if (await videogame.hasUser(user)) {
-        reject({ err: "you had already qualify the videogame" });
+        return reject({ err: "you had already qualify the videogame" });
       }
       videogame.addUser(user);
 
@@ -283,6 +283,7 @@ function qualify(userId, videogameId, score) {
         })
         .then((r) => resolve({ msg: "you have qualifily the videogame" }));
     } catch (error) {
+      console.log(error);
       reject({ err: error });
     }
   });

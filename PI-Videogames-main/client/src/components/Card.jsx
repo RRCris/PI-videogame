@@ -41,7 +41,7 @@ export function Card(props) {
       <Link to={`/details/${inf.id}`}>
         <div className="containerImages">
           <img
-            src={inf.image[1] ? inf.image[1] : ""}
+            src={inf.image[0] ? inf.image[0] : ""}
             className="firstImage"
             onError={onError}
             alt="primera imagen"

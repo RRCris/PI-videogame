@@ -11,7 +11,8 @@ export function Details() {
   let history = useHistory();
   let id = useParams().id;
   let dispatch = useDispatch();
-  let details = useSelector((state) => state.details);
+  let state = useSelector((state) => state);
+  let details = state.details;
   //evitar catch intencionales
   if (id === "RR") id = "RX";
   //actualizar imagenes y botones cuando lleguen los resultados
@@ -120,6 +121,29 @@ export function Details() {
     let obj = new Date(string);
     return obj.toLocaleString();
   }
+
+  //calificar
+  function handleQualify(string) {
+    let input = parseInt(document.getElementById("qualify").value);
+
+    if (!isNaN(input)) {
+      if (input >= 0 && input <= 5) {
+        let id = details.id.toString().replace("R", "");
+        let http = `http://localhost:3001/score?videogame=${id}&user=${state.user.id}&score=${input}`;
+        console.log(http);
+        fetch(http)
+          .then((r) => r.json())
+          .then((r) => {
+            alert(r.err || r.msg);
+          });
+      } else {
+        alert("fuera del rango:0-5");
+      }
+    } else {
+      alert("no es un numero");
+    }
+  }
+
   if (details.id.toString() === id) {
     return (
       <div className="Details">
@@ -154,6 +178,17 @@ export function Details() {
           <h2>{"👨‍👧‍👧 : " + details.rating_count + " "}</h2>
           {ret}
         </div>
+        {state.user.id && details.id.toString()[0] === "R" ? (
+          <div className="group">
+            <div className="groupInput">
+              <input type="text" placeholder="Qualify" id="qualify" />
+              <label>Qualify to :1-5</label>
+            </div>
+            <button onClick={handleQualify}>Qualify</button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   } else {
