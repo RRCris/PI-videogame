@@ -15,21 +15,21 @@
   & .contentUser {
     height: 40px;
     min-width: 300px;
-    max-width: 270px;
 
-    flex-grow: 1;
+    flex-grow: 0.5;
     display: flex;
     align-items: center;
     justify-content: center;
 
     button {
       margin-right: 10px;
+      margin-left: 10px;
     }
   }
   & .contentButtons {
     height: 40px;
     min-width: 390px;
-    flex-grow: 1;
+    flex-grow: 2;
 
     display: flex;
     align-items: center;

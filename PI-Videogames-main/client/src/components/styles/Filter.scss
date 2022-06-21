@@ -12,6 +12,10 @@
       display: flex;
       justify-content: right;
       //min-width: 269px;
+
+      .miniLoader {
+        display: none;
+      }
     }
     .order {
       //min-width: 340px;

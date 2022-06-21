@@ -7,6 +7,8 @@ import {
   CLEARFILTER,
   NEXTPAG,
   PREVPAG,
+  SAVEUSER,
+  CLEARUSER,
 } from "./actionsTypes";
 
 export function getfirst100(dispatch) {
@@ -15,16 +17,21 @@ export function getfirst100(dispatch) {
     .then((x) => dispatch(saveFirst100(x)));
 }
 
-export function getSearch(dispatch, search) {
+export function getSearch(dispatch, search, loader) {
   fetch("http://localhost:3001/videogames?name=" + search)
     .then((x) => x.json())
-    .then((x) => dispatch(saveFirst100(x)));
+    .then((x) => {
+      loader.style.display = "none";
+      dispatch(saveFirst100(x));
+    });
 }
 
 export function getDetails(dispatch, id) {
   fetch("http://localhost:3001/videogames/" + id)
     .then((x) => x.json())
-    .then((x) => dispatch(saveDetails(x)));
+    .then((x) => {
+      dispatch(saveDetails(x));
+    });
 }
 
 export function orderFisrt100(order) {
@@ -40,24 +47,24 @@ export function saveFirst100(result) {
   };
 }
 
-export function saveDetails(result) {
+export function saveDetails(details) {
   return {
     type: SAVEDETAILS,
-    payload: result,
+    payload: details,
   };
 }
 
-export function addFilter(result) {
+export function addFilter(filter) {
   return {
-    type: result.filter === "All" ? CLEARFILTER : ADDFILTER,
-    payload: result,
+    type: filter.filter === "All" ? CLEARFILTER : ADDFILTER,
+    payload: filter,
   };
 }
 
-export function deleteFilter(result) {
+export function deleteFilter(filter) {
   return {
     type: DELFILTER,
-    payload: result,
+    payload: filter,
   };
 }
 export function nextPag() {
@@ -71,5 +78,17 @@ export function prevPag() {
   return {
     type: PREVPAG,
     payload: -1,
+  };
+}
+export function saveUser(user) {
+  return {
+    type: SAVEUSER,
+    payload: user,
+  };
+}
+export function clearUser(user) {
+  return {
+    type: CLEARUSER,
+    payload: user,
   };
 }

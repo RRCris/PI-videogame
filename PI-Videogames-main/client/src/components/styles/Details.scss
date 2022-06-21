@@ -38,11 +38,13 @@
     height: fit-content;
 
     & #description {
-      height: 200px;
+      max-height: 200px;
+      height: fit-content;
       overflow: hidden;
       text-overflow: clip;
       transition: all 1s;
       &:hover {
+        max-height: fit-content;
         height: fit-content;
       }
 

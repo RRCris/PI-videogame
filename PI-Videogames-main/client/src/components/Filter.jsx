@@ -1,4 +1,5 @@
 import "./styles/Filter.css";
+import loader from "../images/load.svg";
 import {
   addFilter,
   deleteFilter,
@@ -32,9 +33,11 @@ export function Filter() {
     dispatch(deleteFilter(e.target.innerText));
   }
   function handleSearch() {
+    let loader = document.getElementById("miniLoader");
+    loader.style.display = "inline-block";
     let search = document.getElementById("searchIn").value;
     if (search.length > 0) {
-      getSearch(dispatch, search);
+      getSearch(dispatch, search, loader);
     }
   }
   function onOrder(e) {
@@ -56,6 +59,9 @@ export function Filter() {
             <div onClick={handleSearch}>
               <img alt="" />
             </div>
+          </div>
+          <div className="miniLoader" id="miniLoader">
+            <object data={loader} type="image/svg+xml"></object>
           </div>
         </div>
         <div className="order">

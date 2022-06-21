@@ -1,6 +1,11 @@
+import { useDispatch } from "react-redux";
+import { saveUser } from "../redux/actions";
+import { useHistory } from "react-router-dom";
 import "./styles/FormLogIn.css";
 
 export function FormLogIn(props) {
+  let dispatch = useDispatch();
+  let history = useHistory();
   function handleButton(e) {
     let user = document.getElementById("inputUserName").value;
     let pass = document.getElementById("inputPassword").value;
@@ -11,7 +16,8 @@ export function FormLogIn(props) {
         if (r.err) {
           document.getElementById("inf").innerText = r.err;
         } else {
-          console.log(r);
+          dispatch(saveUser(r));
+          history.push("/home");
         }
       });
   }
@@ -36,7 +42,7 @@ export function FormLogIn(props) {
         <br />
         <br />
         <p>
-          si no tienes cuenta primero <a href="/register">Registarte</a>
+          si no tienes cuenta, primero <a href="/register">Registarte</a>
         </p>
       </div>
     </div>

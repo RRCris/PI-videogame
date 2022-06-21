@@ -60,23 +60,19 @@ function createVideogame(
   image,
   launch,
   description,
-  plataformsID,
-  genresID
+  plataformsName,
+  genresName
 ) {
   let p = new Promise(async (resolve, reject) => {
     //validamos que sean arrays plataform y genres
-    if (typeof plataformsID != "object" || typeof genresID != "object")
+    if (typeof plataformsName != "object" || typeof genresName != "object")
       return reject({ err: "data invalid(platoforms or genres))" });
     try {
-      //nos aseguramos que las array tengan numeros
-      plataformsID = plataformsID.map((x) => parseInt(x));
-      genresID = genresID.map((x) => parseInt(x));
-
       //creamos videojuego y requerimos la lista de plaformas y genereos disponibles
       let videogame = await Videogame.create({
         name,
         image,
-        launch: Date.parse(launch),
+        launch: launch,
         description,
       });
       let plataforms = await Plataform.findAll();
@@ -84,12 +80,15 @@ function createVideogame(
       // console.log(genres);
 
       //filtramos la lista para que solo queden las que se  van a asociar
-      let plataformsSelected = plataforms.filter((x) =>
-        plataformsID.includes(x.dataValues.api)
-      );
-      let genresSelected = genres.filter((x) =>
-        genresID.includes(x.dataValues.api)
-      );
+      let plataformsSelected = plataforms.filter((plataform) => {
+        let result = false;
+        plataformsName.forEach((name) => {
+          if (plataform.name.toLowerCase().includes(name)) result = true;
+        });
+        return result;
+      });
+      let genresSelected = genres.filter((x) => genresName.includes(x.name));
+
       //realizamos las respectivas relaciones
       await videogame.addPlataforms(plataformsSelected);
       await videogame.addGenres(genresSelected);

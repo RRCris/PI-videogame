@@ -9,7 +9,7 @@ const router = Router();
 
 // Configurar los routers
 router.use((req, res, next) => {
-  console.log("Entro al Server");
+  console.log("\x1b[33m", "Entro al Server");
   next();
 });
 router.use("/videogames", routerVideogames);

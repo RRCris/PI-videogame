@@ -51,11 +51,11 @@ routerVideogames.post("/", (req, res) => {
   } else {
     let plataforms = req.body.plataforms.split(",");
     let genres = req.body.genres.split(",");
-    console.log(plataforms);
+    let launch = new Date(parseInt(req.body.launch));
     createVideogame(
       req.body.name,
       req.body.image,
-      req.body.launch,
+      launch,
       req.body.description,
       plataforms,
       genres

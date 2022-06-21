@@ -53,7 +53,10 @@
 }
 
 .Details .moreInfo #description {
-  height: 200px;
+  max-height: 200px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   overflow: hidden;
   text-overflow: clip;
   -webkit-transition: all 1s;
@@ -61,6 +64,9 @@
 }
 
 .Details .moreInfo #description:hover {
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;

@@ -24,10 +24,9 @@
 .navBar .contentUser {
   height: 40px;
   min-width: 300px;
-  max-width: 270px;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -webkit-box-flex: 0.5;
+      -ms-flex-positive: 0.5;
+          flex-grow: 0.5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,14 +40,15 @@
 
 .navBar .contentUser button {
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .navBar .contentButtons {
   height: 40px;
   min-width: 390px;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

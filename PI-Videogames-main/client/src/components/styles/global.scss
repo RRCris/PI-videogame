@@ -890,3 +890,38 @@ a {
       brightness(101%) contrast(106%);
   }
 }
+
+.miniLoader {
+  margin-left: 10px;
+  width: fit-content;
+  object {
+    width: 50px;
+    filter: invert(99%) sepia(2%) saturate(2136%) hue-rotate(214deg)
+      brightness(112%) contrast(73%);
+  }
+}
+.groupFile {
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  input[type="file"] {
+    margin-bottom: 30px;
+    &::after {
+      content: "Add File";
+      text-align: center;
+      font-size: 16pt;
+      color: var(--letter-color-primary);
+
+      background-color: var(--back-color-primary);
+      border: 2px solid var(--color-primary);
+      border-radius: 10px;
+
+      display: inline-block;
+      width: 200px;
+      height: 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

@@ -28,6 +28,10 @@
           justify-content: right;
 }
 
+.Filter .header .containerSearch .miniLoader {
+  display: none;
+}
+
 .Filter .header .order {
   display: -webkit-box;
   display: -ms-flexbox;

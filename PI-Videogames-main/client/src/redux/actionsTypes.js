@@ -6,3 +6,5 @@ export const DELFILTER = "DELFILTER";
 export const CLEARFILTER = "CLEARFILTER";
 export const NEXTPAG = "NEXTPAG";
 export const PREVPAG = "PREVPAG";
+export const SAVEUSER = "SAVEUSER";
+export const CLEARUSER = "CLEARUSER";

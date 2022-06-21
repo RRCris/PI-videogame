@@ -84,7 +84,11 @@ export function Home() {
       </div>
       <div className="containerCards">
         {results.length === 0 ? (
-          <Loader />
+          store.first100.length === 0 ? (
+            <Loader />
+          ) : (
+            <h1>No hay resultados</h1>
+          )
         ) : (
           results.map((x) => <Card key={x.id} data={x} />)
         )}

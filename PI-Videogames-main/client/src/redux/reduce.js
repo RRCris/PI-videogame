@@ -7,11 +7,13 @@ import {
   CLEARFILTER,
   NEXTPAG,
   PREVPAG,
+  SAVEUSER,
+  CLEARUSER,
 } from "./actionsTypes";
 
 let defaultState = {
   first100: [],
-  details: { id: undefined },
+  details: { id: "RR" },
   order: "",
   user: {},
   filters: {
@@ -109,6 +111,12 @@ export function Reducer(state, action) {
       return { ...state };
     case PREVPAG:
       state.filters.pag -= 1;
+      return { ...state };
+    case SAVEUSER:
+      state.user = action.payload;
+      return { ...state };
+    case CLEARUSER:
+      state.user = [];
       return { ...state };
     default:
       return state;
