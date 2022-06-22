@@ -291,9 +291,9 @@ function qualify(userId, videogameId, score) {
   return p;
 }
 
-// updateGenres();
-// updatePlataforms();
-// addUser("antonio", "ant", "1234", "correo@gmail.com");
+updateGenres();
+updatePlataforms();
+addUser("antonio", "ant", "1234", "correo@gmail.com");
 
 module.exports = {
   searchDB,

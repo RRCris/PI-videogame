@@ -8,7 +8,7 @@ export function Card(props) {
   useEffect(() => {
     if (inf.id.toString()[0] === "R") {
       let x = atob(props.data.image);
-      document.getElementById("image").setAttribute("src", x);
+      document.getElementById(inf.id).setAttribute("src", x);
     }
   }, [props]);
   //por si las imagen no carga
@@ -48,7 +48,7 @@ export function Card(props) {
           />
           <img
             src={inf.image[1] ? inf.image[1] : ""}
-            id="image"
+            id={inf.id}
             className="secondImage"
             onError={onError}
             alt="segunda imagen"

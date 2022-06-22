@@ -9,10 +9,16 @@ if (!DB_USER) {
   DB_HOST = "localhost";
 }
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/d2ni2dbrd33urd`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
   }
 );
 const basename = path.basename(__filename);

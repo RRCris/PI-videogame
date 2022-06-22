@@ -1,6 +1,7 @@
 import "./styles/Landing.css";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 export function Landing(props) {
+  let history = useHistory();
   return (
     <div className="Landing">
       <img
@@ -9,9 +10,7 @@ export function Landing(props) {
       />
       <div className="groupWelcome">
         <h1>Welcome to GameWiki</h1>
-        <Link to="/home">
-          <button>Go To Home</button>
-        </Link>
+        <button onClick={() => history.push("/home")}>Go To Home</button>
       </div>
     </div>
   );
